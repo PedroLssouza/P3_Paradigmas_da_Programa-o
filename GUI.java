@@ -53,16 +53,16 @@ public class GUI {
         frame.add(botoes, BorderLayout.SOUTH);
 
         // Ações
-        adicionar.addActionListener(e -> abrirFormulario(-1));
-        editar.addActionListener(e -> {
-            int i = lista.getSelectedIndex();
-            if (i != -1) abrirFormulario(i);
+        adicionar.addActionListener(e -> abrirFormulario(-1)); // o getSelectedIndex é usado para obter o indice do item atualamente selecioando
+        editar.addActionListener(e -> {     
+            int i = lista.getSelectedIndex();// busca o indice do item selecionado na lista 
+            if (i != -1) abrirFormulario(i); // se o item for diferente de menos 1 vai abrir  a aba de formulario para ediçao com o idice selecionado
         });
         remover.addActionListener(e -> {
-            int i = lista.getSelectedIndex();
+            int i = lista.getSelectedIndex();// mesma logica da anterior , onde pega o indice do item selecionado 
             if (i != -1) {
-                gerenciador.remover(i);
-                atualizarLista();
+                gerenciador.remover(i); // chama o metodo de remover da classe GerenciadorPublicação
+                atualizarLista(); // chama o metodo de atualizar da classe GerenciadorPublicação
             }
         });
 
