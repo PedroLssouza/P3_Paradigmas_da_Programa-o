@@ -6,7 +6,7 @@ public class GerenciadorPublicacoes {
     private final String arquivo = "publicacoes.dat";
 
     public GerenciadorPublicacoes() {
-        publicacoes = carregarDados();
+        publicacoes = carregarDados(); //carregar dados anteriores
     }
 
     public void adicionar(Publicacao p) {
@@ -26,7 +26,7 @@ public class GerenciadorPublicacoes {
 
     public List<Publicacao> getPublicacoes() {
         return publicacoes;
-    }
+    }   //apresentar os dados na interface
 
     private void salvarDados() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo))) {
@@ -38,9 +38,9 @@ public class GerenciadorPublicacoes {
 
     private List<Publicacao> carregarDados() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo))) {
-            return (List<Publicacao>) ois.readObject();
+            return (List<Publicacao>) ois.readObject();  //lê o arquivo e reconstroi a lista de objetos
         } catch (IOException | ClassNotFoundException e) {
-            return new ArrayList<>();
+            return new ArrayList<>();  //retorna lista vazia caso n exista o arquivo ou corrompido
         }
     }
 }
