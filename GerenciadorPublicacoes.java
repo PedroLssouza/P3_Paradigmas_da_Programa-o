@@ -1,8 +1,8 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class GerenciadorPublicacoes {
-    private List<Publicacao> publicacoes;
+    private List<Publicacao> publicacoes; //listas onde sao armazenadas as publicação em tempo de execucao
     private final String arquivo = "publicacoes.dat";
 
     public GerenciadorPublicacoes() {
@@ -10,17 +10,17 @@ public class GerenciadorPublicacoes {
     }
 
     public void adicionar(Publicacao p) {
-        publicacoes.add(p);
+        publicacoes.add(p); // metodo da interface Listr
         salvarDados();
     }
 
     public void remover(int index) {
-        publicacoes.remove(index);
+        publicacoes.remove(index);//metodo da interface list
         salvarDados();
     }
 
     public void alterar(int index, Publicacao nova) {
-        publicacoes.set(index, nova);
+        publicacoes.set(index, nova); // set substitui o elemento da publicação no index selecionado
         salvarDados();
     }
 
@@ -29,9 +29,9 @@ public class GerenciadorPublicacoes {
     }   //apresentar os dados na interface
 
     private void salvarDados() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo))) {
-            oos.writeObject(publicacoes);
-        } catch (IOException e) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo))) {  // oos objeto do tipo objectoutputstream
+            oos.writeObject(publicacoes); //file abre para leitura , objetct traduz o arquivo , wrtie object receber o objeto (publicacao) e oos vai traduzir para byts
+        } catch (IOException e) {  // tratamento de de exessoes para tratar erros e evitar o que programa pare de funcionar 
             e.printStackTrace();
         }
     }
